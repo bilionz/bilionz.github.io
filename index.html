@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mystery Game Decoder</title>
+    <style>
+        body {
+            background-color: #282c34;
+            color: #fff;
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            padding: 50px;
+        }
+        h1 {
+            font-size: 3em;
+        }
+        .decoder {
+            margin-top: 20px;
+        }
+        textarea {
+            width: 100%;
+            height: 100px;
+            margin-bottom: 20px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/openpgp@5.5.0/dist/openpgp.min.js"></script>
+</head>
+<body>
+    <div class="game-container">
+        <h1>Mystery Game</h1>
+        <div class="decoder">
+            <textarea id="encodedText" placeholder="Enter encoded text"></textarea>
+            <textarea id="publicKey" placeholder="Enter public key"></textarea>
+            <button onclick="decodeText()">Decode</button>
+            <div id="decodedMessage">
+                <h2>Decoded Message:</h2>
+                <p id="decodedText"></p>
+            </div>
+        </div>
+    </div>
+    <script>
+        async function decodeText() {
+            const encodedText = document.getElementById('encodedText').value;
+            const publicKeyArmored = document.getElementById('publicKey').value;
+            const decodedTextElement = document.getElementById('decodedText');
+
+            try {
+                const publicKey = await openpgp.readKey({ armoredKey: publicKeyArmored });
+                const message = await openpgp.readMessage({ armoredMessage: encodedText });
+
+                const { data: decrypted } = await openpgp.decrypt({
+                    message,
+                    decryptionKeys: publicKey,
+                });
+
+                decodedTextElement.textContent = decrypted;
+            } catch (error) {
+                console.error('Error decoding text:', error);
+                decodedTextElement.textContent = 'Failed to decode message.';
+            }
+        }
+    </script>
+</body>
+</html>
