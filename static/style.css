@@ -14,16 +14,6 @@ body {
     margin: 0 auto;
 }
 
-.background-img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0.3;
-    z-index: -1;
-}
-
 h1 {
     font-size: 2.5em;
     margin-top: 20px;
@@ -36,9 +26,9 @@ h1 {
     padding: 10px;
 }
 
-textarea {
+input[type="text"] {
     width: 90%;
-    height: 80px;
+    height: 40px;
     margin-bottom: 15px;
     font-family: 'Courier New', Courier, monospace;
     background-color: #1c1c1c;
@@ -72,14 +62,19 @@ h2 {
     text-shadow: 1px 1px 2px #000000;
 }
 
+#feedback {
+    color: #ff0000;
+    margin-top: 10px;
+}
+
 /* Responsive Styles */
 @media (max-width: 600px) {
     h1 {
         font-size: 2em;
     }
 
-    textarea {
-        height: 60px;
+    input[type="text"] {
+        height: 30px;
     }
 
     button {

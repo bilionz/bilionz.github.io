@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mystery Game Decoder</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="game-container">
+        <h1>Mystery Game</h1>
+        <div class="decoder">
+            <input type="text" id="teamName" placeholder="Enter your team name">
+            <input type="text" id="riddleId" placeholder="Enter riddle ID">
+            <input type="text" id="solution" placeholder="Enter solution">
+            <button onclick="decodeRiddle()">Decode</button>
+            <div id="feedback"></div>
+            <div id="decodedMessage">
+                <h2>Decoded Message:</h2>
+                <p id="decodedText"></p>
+            </div>
+        </div>
+    </div>
+    <script>
+        async function decodeRiddle() {
+            const teamName = document.getElementById('teamName').value;
+            const riddleId = document.getElementById('riddleId').value;
+            const solution = document.getElementById('solution').value;
+            const feedbackElement = document.getElementById('feedback');
+            const decodedTextElement = document.getElementById('decodedText');
+
+            if (!teamName || !riddleId || !solution) {
+                feedbackElement.textContent = 'Please fill in all fields.';
+                return;
+            }
+
+            try {
+                const response = await fetch('/decode', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ teamName, riddleId, solution })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    decodedTextElement.textContent = data.message;
+                    feedbackElement.textContent = `Successfully decoded by ${teamName}!`;
+                } else {
+                    feedbackElement.textContent = data.error;
+                }
+            } catch (error) {
+                feedbackElement.textContent = 'An error occurred. Please try again.';
+            }
+        }
+    </script>
+</body>
+</html>
