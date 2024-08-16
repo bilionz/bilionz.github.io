@@ -1,3 +1,17 @@
+// Function to parse URL parameters
+function getUrlParameter(name) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(name);
+}
+
+document.addEventListener('DOMContentLoaded', (event) => {
+    // Pre-fill encoded text from URL parameter
+    const encodedTextParam = getUrlParameter('encodedText');
+    if (encodedTextParam) {
+        document.getElementById('encodedText').value = decodeURIComponent(encodedTextParam);
+    }
+});
+
 async function decodeText() {
     const encodedText = document.getElementById('encodedText').value;
     const publicKeyArmored = document.getElementById('publicKey').value;

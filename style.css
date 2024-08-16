@@ -3,13 +3,15 @@ body {
     color: #fff;
     font-family: 'Pirata One', cursive;
     text-align: center;
-    padding: 50px;
+    padding: 20px;
     margin: 0;
-    overflow: hidden;
+    overflow-x: hidden;
 }
 
 .game-container {
     position: relative;
+    max-width: 600px;
+    margin: 0 auto;
 }
 
 .background-img {
@@ -23,25 +25,26 @@ body {
 }
 
 h1 {
-    font-size: 3em;
+    font-size: 2.5em;
     margin-top: 20px;
     color: #c0c0c0;
     text-shadow: 2px 2px 4px #000000;
 }
 
 .decoder {
-    margin-top: 40px;
+    margin-top: 30px;
+    padding: 10px;
 }
 
 textarea {
-    width: 80%;
-    height: 100px;
-    margin-bottom: 20px;
+    width: 90%;
+    height: 80px;
+    margin-bottom: 15px;
     font-family: 'Courier New', Courier, monospace;
     background-color: #1c1c1c;
     border: 1px solid #4CAF50;
     color: #fff;
-    padding: 10px;
+    padding: 8px;
     border-radius: 5px;
 }
 
@@ -67,4 +70,19 @@ button:hover {
 h2 {
     color: #FFD700;
     text-shadow: 1px 1px 2px #000000;
+}
+
+/* Responsive Styles */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 2em;
+    }
+
+    textarea {
+        height: 60px;
+    }
+
+    button {
+        font-size: 14px;
+    }
 }
