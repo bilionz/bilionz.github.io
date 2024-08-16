@@ -4,7 +4,7 @@ function getUrlParameter(name) {
     return urlParams.get(name);
 }
 
-document.addEventListener('DOMContentLoaded', (event) => {
+document.addEventListener('DOMContentLoaded', () => {
     // Pre-fill encoded text from URL parameter
     const encodedTextParam = getUrlParameter('encodedText');
     if (encodedTextParam) {
