@@ -8,6 +8,11 @@ app = Flask(__name__)
 with open('config.json') as config_file:
     riddles_config = json.load(config_file)
 
+# Load valid team names
+with open('team_config.json') as team_config_file:
+    team_config = json.load(team_config_file)
+    valid_teams = team_config['valid_teams']
+
 def load_solved_riddles():
     try:
         with open('solved_riddles.json') as solved_file:
@@ -30,6 +35,10 @@ def solve_riddle():
     riddle_id = data.get('riddleId')
     riddle_part = data.get('riddlePart')
     solution = data.get('solution')
+
+    # Check if the team name is valid
+    if team_name not in valid_teams:
+        return jsonify({'success': False, 'error': 'Invalid team name.'})
 
     solved_riddles = load_solved_riddles()
 
