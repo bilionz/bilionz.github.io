@@ -3,31 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mystery Game Decoder</title>
+    <title>Mystery Game Solver</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
     <div class="game-container">
-        <h1>Mystery Game</h1>
-        <div class="decoder">
+        <img src="{{ url_for('static', filename='background.png') }}" alt="Background" class="background-img">
+        <h1>Mystery Game Solver</h1>
+        <div class="solver">
             <input type="text" id="teamName" placeholder="Enter your team name">
             <input type="text" id="riddleId" placeholder="Enter riddle ID">
             <input type="text" id="solution" placeholder="Enter solution">
-            <button onclick="decodeRiddle()">Decode</button>
+            <button onclick="solveRiddle()">Solve Riddle!</button>
             <div id="feedback"></div>
-            <div id="decodedMessage">
-                <h2>Decoded Message:</h2>
-                <p id="decodedText"></p>
+            <div id="resolutionMessage">
+                <h2>Resolution:</h2>
+                <p id="resolvedText"></p>
             </div>
         </div>
     </div>
     <script>
-        async function decodeRiddle() {
+        async function solveRiddle() {
             const teamName = document.getElementById('teamName').value;
             const riddleId = document.getElementById('riddleId').value;
             const solution = document.getElementById('solution').value;
             const feedbackElement = document.getElementById('feedback');
-            const decodedTextElement = document.getElementById('decodedText');
+            const resolvedTextElement = document.getElementById('resolvedText');
 
             if (!teamName || !riddleId || !solution) {
                 feedbackElement.textContent = 'Please fill in all fields.';
@@ -35,7 +36,7 @@
             }
 
             try {
-                const response = await fetch('/decode', {
+                const response = await fetch('/solve', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ teamName, riddleId, solution })
@@ -44,8 +45,8 @@
                 const data = await response.json();
 
                 if (data.success) {
-                    decodedTextElement.textContent = data.message;
-                    feedbackElement.textContent = `Successfully decoded by ${teamName}!`;
+                    resolvedTextElement.textContent = data.resolution;
+                    feedbackElement.textContent = `Successfully solved by ${teamName}!`;
                 } else {
                     feedbackElement.textContent = data.error;
                 }

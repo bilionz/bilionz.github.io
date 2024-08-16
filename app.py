@@ -23,8 +23,8 @@ def save_solved_riddles(solved_riddles):
 def index():
     return render_template('index.html')
 
-@app.route('/decode', methods=['POST'])
-def decode_riddle():
+@app.route('/solve', methods=['POST'])
+def solve_riddle():
     data = request.json
     team_name = data.get('teamName')
     riddle_id = data.get('riddleId')
@@ -32,22 +32,25 @@ def decode_riddle():
 
     solved_riddles = load_solved_riddles()
 
-    if riddle_id not in riddles_config:
+    riddle = next((r for r in riddles_config if r['riddleid'] == riddle_id), None)
+
+    if not riddle:
         return jsonify({'success': False, 'error': 'Invalid riddle ID.'})
 
-    if riddles_config[riddle_id] != solution:
+    if riddle['solution'] != solution:
         return jsonify({'success': False, 'error': 'Incorrect solution.'})
 
     if team_name not in solved_riddles:
         solved_riddles[team_name] = {}
 
     if riddle_id in solved_riddles[team_name]:
-        return jsonify({'success': False, 'error': 'Riddle already solved.'})
+        # return jsonify({'success': False, 'error': 'Riddle already solved.'})
+        return jsonify({'success': True, 'resolution': riddle['resolution']})   
 
     solved_riddles[team_name][riddle_id] = datetime.now().isoformat()
     save_solved_riddles(solved_riddles)
 
-    return jsonify({'success': True, 'message': 'Riddle solved successfully!'})
+    return jsonify({'success': True, 'resolution': riddle['resolution']})
 
 if __name__ == '__main__':
     app.run(debug=True)

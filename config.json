@@ -1,4 +1,12 @@
-{
-    "riddle1": "solution1",
-    "riddle2": "solution2"
-}
+[
+    {
+        "riddleid": "riddle1",
+        "solution": "solution1",
+        "resolution": "Congratulations! You've solved Riddle 1."
+    },
+    {
+        "riddleid": "riddle2",
+        "solution": "solution2",
+        "resolution": "Well done! Riddle 2 is complete."
+    }
+]
