@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solved Riddles</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        .solved-container {
+            margin-top: 20px;
+            text-align: left;
+        }
+        .team {
+            margin-bottom: 20px;
+        }
+        .riddle {
+            margin-left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <h1>Solved Riddles</h1>
+        <div class="solved-container" id="solvedContainer">
+            <!-- Solved riddles will be dynamically inserted here -->
+        </div>
+    </div>
+    <script>
+        async function fetchSolvedRiddles() {
+            try {
+                const response = await fetch('/get_solved_riddles');
+                const data = await response.json();
+                const container = document.getElementById('solvedContainer');
+                container.innerHTML = '';
+
+                for (const [team, riddles] of Object.entries(data)) {
+                    const teamDiv = document.createElement('div');
+                    teamDiv.className = 'team';
+                    teamDiv.innerHTML = `<strong>Team: ${team}</strong>`;
+                    container.appendChild(teamDiv);
+
+                    for (const [riddleId, parts] of Object.entries(riddles)) {
+                        for (const [part, timestamp] of Object.entries(parts)) {
+                            const riddleDiv = document.createElement('div');
+                            riddleDiv.className = 'riddle';
+                            riddleDiv.innerHTML = `Riddle ID: ${riddleId}, Part: ${part}, Solved at: ${new Date(timestamp).toLocaleString()}`;
+                            teamDiv.appendChild(riddleDiv);
+                        }
+                    }
+                }
+            } catch (error) {
+                console.error('Error fetching solved riddles:', error);
+            }
+        }
+
+        setInterval(fetchSolvedRiddles, 5000); // Refresh every 5 seconds
+        fetchSolvedRiddles(); // Initial fetch
+    </script>
+</body>
+</html>

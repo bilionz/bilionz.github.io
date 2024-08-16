@@ -28,14 +28,15 @@ def solve_riddle():
     data = request.json
     team_name = data.get('teamName')
     riddle_id = data.get('riddleId')
+    riddle_part = data.get('riddlePart')
     solution = data.get('solution')
 
     solved_riddles = load_solved_riddles()
 
-    riddle = next((r for r in riddles_config if r['riddleid'] == riddle_id), None)
+    riddle = next((r for r in riddles_config if r['riddleid'] == riddle_id and r['part'] == riddle_part), None)
 
     if not riddle:
-        return jsonify({'success': False, 'error': 'Invalid riddle ID.'})
+        return jsonify({'success': False, 'error': 'Invalid riddle ID or part.'})
 
     if riddle['solution'] != solution:
         return jsonify({'success': False, 'error': 'Incorrect solution.'})
@@ -43,14 +44,24 @@ def solve_riddle():
     if team_name not in solved_riddles:
         solved_riddles[team_name] = {}
 
-    if riddle_id in solved_riddles[team_name]:
-        # return jsonify({'success': False, 'error': 'Riddle already solved.'})
-        return jsonify({'success': True, 'resolution': riddle['resolution']})   
+    if riddle_id not in solved_riddles[team_name]:
+        solved_riddles[team_name][riddle_id] = {}
 
-    solved_riddles[team_name][riddle_id] = datetime.now().isoformat()
+    if riddle_part in solved_riddles[team_name][riddle_id]:
+        return jsonify({'success': False, 'error': 'Riddle part already solved.'})
+
+    solved_riddles[team_name][riddle_id][riddle_part] = datetime.now().isoformat()
     save_solved_riddles(solved_riddles)
 
     return jsonify({'success': True, 'resolution': riddle['resolution']})
+
+@app.route('/solved')
+def solved():
+    return render_template('solved.html')
+
+@app.route('/get_solved_riddles')
+def get_solved_riddles():
+    return jsonify(load_solved_riddles())
 
 if __name__ == '__main__':
     app.run(debug=True)
