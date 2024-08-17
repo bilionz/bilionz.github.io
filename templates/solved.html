@@ -26,6 +26,8 @@
         </div>
     </div>
     <script>
+        const teams = {{ teams | tojson }};
+
         async function fetchSolvedRiddles() {
             try {
                 const response = await fetch('/get_solved_riddles');
@@ -33,10 +35,12 @@
                 const container = document.getElementById('solvedContainer');
                 container.innerHTML = '';
 
-                for (const [team, riddles] of Object.entries(data)) {
+                for (const [teamName, riddles] of Object.entries(data)) {
+                    const teamInfo = teams.find(t => t.team_name === teamName) || { infected_member: 'Unknown' };
+
                     const teamDiv = document.createElement('div');
                     teamDiv.className = 'team';
-                    teamDiv.innerHTML = `<strong>Team: ${team}</strong>`;
+                    teamDiv.innerHTML = `<strong>Team: ${teamName} (Infected: ${teamInfo.infected_member})</strong>`;
                     container.appendChild(teamDiv);
 
                     for (const [riddleId, parts] of Object.entries(riddles)) {

@@ -25,7 +25,7 @@
             <div id="resolutionMessage">
                 <h2>Resolution:</h2>
                 <p id="resolvedText"></p>
-                <img id="resolvedImage" src="" alt="Resolution Image" style="display:none; max-width: 100%;">
+                <img id="resolvedImage" src="" alt="Resolution Image" style="display:none; max-width: 100%; margin-top: 10px;">
             </div>
         </div>
     </div>
@@ -57,10 +57,9 @@
                     resolvedTextElement.textContent = data.resolution;
                     feedbackElement.textContent = `Successfully solved by ${teamName}!`;
 
-                    // Check if the resolution image is available
-                    const riddle = data.riddle || {};
-                    if (riddle.image) {
-                        resolvedImageElement.src = `{{ url_for('static', filename='${riddle.image}') }}`;
+                    // Display the resolution image if available
+                    if (data.image) {
+                        resolvedImageElement.src = `{{ url_for('static', filename='${data.image}') }}`;
                         resolvedImageElement.style.display = 'block';
                     } else {
                         resolvedImageElement.style.display = 'none';
