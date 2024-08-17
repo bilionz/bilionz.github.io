@@ -115,18 +115,7 @@ def solve_riddle():
     if not team:
         return jsonify({'success': False, 'error': 'Invalid team name.'})
 
-    team['attempts'] += 1
-    save_team_config({'teams': teams})
-
     solved_riddles = load_solved_riddles()
-
-    riddle = next((r for r in riddles_config if r['riddleid'] == riddle_id and r['part'] == riddle_part), None)
-
-    if not riddle:
-        return jsonify({'success': False, 'error': 'Invalid riddle ID or part.'})
-
-    if riddle['solution'] != solution:
-        return jsonify({'success': False, 'error': 'Incorrect solution.'})
 
     if team_name not in solved_riddles:
         solved_riddles[team_name] = {}
@@ -134,10 +123,27 @@ def solve_riddle():
     if riddle_id not in solved_riddles[team_name]:
         solved_riddles[team_name][riddle_id] = {}
 
-    if riddle_part in solved_riddles[team_name][riddle_id]:
+    if riddle_part not in solved_riddles[team_name][riddle_id]:
+        solved_riddles[team_name][riddle_id][riddle_part] = {
+            'attempts': 0,
+            'solved_at': None
+        }
+
+    solved_riddles[team_name][riddle_id][riddle_part]['attempts'] += 1
+
+    riddle = next((r for r in riddles_config if r['riddleid'] == riddle_id and r['part'] == riddle_part), None)
+
+    if not riddle:
+        return jsonify({'success': False, 'error': 'Invalid riddle ID or part.'})
+
+    if riddle['solution'] != solution:
+        save_solved_riddles(solved_riddles)
+        return jsonify({'success': False, 'error': 'Incorrect solution.'})
+
+    if solved_riddles[team_name][riddle_id][riddle_part]['solved_at']:
         return jsonify({'success': False, 'error': 'Riddle part already solved.'})
 
-    solved_riddles[team_name][riddle_id][riddle_part] = datetime.now().isoformat()
+    solved_riddles[team_name][riddle_id][riddle_part]['solved_at'] = datetime.now().isoformat()
     save_solved_riddles(solved_riddles)
 
     image_path = f'riddle_images/{riddle_id}.png'
@@ -150,7 +156,7 @@ def solve_riddle():
 
 @app.route('/solved')
 def solved():
-    return render_template('solved.html', teams=teams)
+    return render_template('solved.html', teams=teams, solved_riddles=load_solved_riddles())
 
 @app.route('/get_solved_riddles')
 def get_solved_riddles():
