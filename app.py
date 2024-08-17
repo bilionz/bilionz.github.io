@@ -58,9 +58,21 @@ def logout():
     session.pop('team_name', None)
     return redirect(url_for('login'))
 
-@app.route('/register_infected')
-def register_infected():
-    return render_template('register_infected.html')
+@app.route('/riddle_s')
+def riddle_s():
+    if 'team_name' not in session:
+        return redirect(url_for('login'))
+
+    auto_player = request.args.get('auto_player')
+    if auto_player:
+        team_name = session['team_name']
+        team = next((team for team in teams if team['team_name'] == team_name), None)
+
+        if team and auto_player not in team['infected_members']:
+            team['infected_members'].append(auto_player)
+            save_team_config({'teams': teams})
+
+    return render_template('riddle_s.html')
 
 @app.route('/add_infected', methods=['POST'])
 def add_infected():
