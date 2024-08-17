@@ -158,6 +158,10 @@ def solve_riddle():
 def solved():
     return render_template('solved.html', teams=teams, solved_riddles=load_solved_riddles())
 
+@app.route('/get_team_data')
+def get_team_data():
+    return jsonify(teams)
+
 @app.route('/get_solved_riddles')
 def get_solved_riddles():
     return jsonify(load_solved_riddles())
