@@ -88,7 +88,8 @@ def solve_riddle():
         solved_riddles[team_name][riddle_id] = {}
 
     if riddle_part in solved_riddles[team_name][riddle_id]:
-        return jsonify({'success': False, 'error': 'Riddle part already solved.'})
+        # return jsonify({'success': False, 'error': 'Riddle part already solved.'})
+        return jsonify({'success': True, 'resolution': riddle['resolution']})
 
     solved_riddles[team_name][riddle_id][riddle_part] = datetime.now().isoformat()
     save_solved_riddles(solved_riddles)

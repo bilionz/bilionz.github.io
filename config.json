@@ -4,7 +4,7 @@
         "part": "A",
         "solution": "weareready",
         "resolution": "Congrats! You've solved Riddle 1 Part A.",
-        "image": "riddle_images/background.png"
+        "image": "background.png"
     },
     {
         "riddleid": "riddle1",
