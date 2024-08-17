@@ -74,6 +74,7 @@
                     // Display the resolution image if available
                     if (data.image) {
                         resolvedImageElement.src = `{{ url_for('static', filename='${data.image}') }}`;
+                        // display the image element
                         resolvedImageElement.style.display = 'block';
                     } else {
                         resolvedImageElement.style.display = 'none';
