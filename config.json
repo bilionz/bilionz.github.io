@@ -1,10 +1,10 @@
 [
     {
-        "riddleid": "riddle1",
+        "riddleid": "start",
         "part": "A",
-        "solution": "solution1A",
+        "solution": "weareready",
         "resolution": "Congrats! You've solved Riddle 1 Part A.",
-        "image": "riddle_images/riddle1.png"
+        "image": "riddle_images/background.png"
     },
     {
         "riddleid": "riddle1",
