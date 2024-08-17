@@ -27,42 +27,48 @@
     </div>
     <script>
         const teamData = {{ teams | tojson }};
-        const solvedData = {{ solved_riddles | tojson }};
 
-        function displaySolvedRiddles() {
-            const container = document.getElementById('solvedContainer');
-            container.innerHTML = '';
+        async function fetchSolvedRiddles() {
+            try {
+                const response = await fetch('/get_solved_riddles');
+                const solvedData = await response.json();
+                const container = document.getElementById('solvedContainer');
+                container.innerHTML = '';
 
-            teamData.forEach(team => {
-                const teamDiv = document.createElement('div');
-                teamDiv.className = 'team';
-                teamDiv.innerHTML = `<strong>Team: ${team.team_name} (Infected: ${team.infected_members.join(', ')})</strong>`;
-                container.appendChild(teamDiv);
+                teamData.forEach(team => {
+                    const teamDiv = document.createElement('div');
+                    teamDiv.className = 'team';
+                    teamDiv.innerHTML = `<strong>Team: ${team.team_name} (Infected: ${team.infected_members.join(', ')})</strong>`;
+                    container.appendChild(teamDiv);
 
-                const riddles = solvedData[team.team_name] || {};
-                if (Object.keys(riddles).length === 0) {
-                    const noRiddlesDiv = document.createElement('div');
-                    noRiddlesDiv.className = 'riddle';
-                    noRiddlesDiv.textContent = 'No solved riddles yet.';
-                    teamDiv.appendChild(noRiddlesDiv);
-                } else {
-                    for (const [riddleId, parts] of Object.entries(riddles)) {
-                        for (const [part, info] of Object.entries(parts)) {
-                            const riddleDiv = document.createElement('div');
-                            riddleDiv.className = 'riddle';
-                            riddleDiv.innerHTML = `
-                                Riddle ID: ${riddleId}, Part: ${part}, 
-                                Attempts: ${info.attempts}, 
-                                Solved at: ${info.solved_at ? new Date(info.solved_at).toLocaleString() : 'Not solved yet'}
-                            `;
-                            teamDiv.appendChild(riddleDiv);
+                    const riddles = solvedData[team.team_name] || {};
+                    if (Object.keys(riddles).length === 0) {
+                        const noRiddlesDiv = document.createElement('div');
+                        noRiddlesDiv.className = 'riddle';
+                        noRiddlesDiv.textContent = 'No solved riddles yet.';
+                        teamDiv.appendChild(noRiddlesDiv);
+                    } else {
+                        for (const [riddleId, parts] of Object.entries(riddles)) {
+                            for (const [part, info] of Object.entries(parts)) {
+                                const riddleDiv = document.createElement('div');
+                                riddleDiv.className = 'riddle';
+                                riddleDiv.innerHTML = `
+                                    Riddle ID: ${riddleId}, Part: ${part}, 
+                                    Attempts: ${info.attempts}, 
+                                    Solved at: ${info.solved_at ? new Date(info.solved_at).toLocaleString() : 'Not solved yet'}
+                                `;
+                                teamDiv.appendChild(riddleDiv);
+                            }
                         }
                     }
-                }
-            });
+                });
+            } catch (error) {
+                console.error('Error fetching solved riddles:', error);
+            }
         }
 
-        displaySolvedRiddles();
+        setInterval(fetchSolvedRiddles, 5000); // Refresh every 5 seconds
+        fetchSolvedRiddles(); // Initial fetch
     </script>
 </body>
 </html>
