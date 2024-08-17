@@ -2,11 +2,18 @@
     "teams": [
         {
             "team_name": "test",
-            "infected_member": "Alice"
+            "infected_members": ["Alice", "Eve"],
+            "attempts": 0
         },
         {
-            "team_name": "test2",
-            "infected_member": "Bob"
+            "team_name": "Team Beta",
+            "infected_members": ["Bob"],
+            "attempts": 0
+        },
+        {
+            "team_name": "Team Gamma",
+            "infected_members": ["Charlie", "Dave"],
+            "attempts": 0
         }
     ]
 }

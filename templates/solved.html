@@ -38,7 +38,7 @@
                 teamData.forEach(team => {
                     const teamDiv = document.createElement('div');
                     teamDiv.className = 'team';
-                    teamDiv.innerHTML = `<strong>Team: ${team.team_name} (Infected: ${team.infected_member})</strong>`;
+                    teamDiv.innerHTML = `<strong>Team: ${team.team_name} (Infected: ${team.infected_members.join(', ')}, Attempts: ${team.attempts})</strong>`;
                     container.appendChild(teamDiv);
 
                     const riddles = solvedData[team.team_name] || {};

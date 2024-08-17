@@ -8,7 +8,6 @@ app = Flask(__name__)
 with open('config.json') as config_file:
     riddles_config = json.load(config_file)
 
-# Load team configuration
 def load_team_config():
     try:
         with open('team_config.json') as team_config_file:
@@ -38,30 +37,31 @@ def save_solved_riddles(solved_riddles):
 def index():
     return render_template('index.html')
 
-@app.route('/register')
-def register():
-    return render_template('register.html')
+@app.route('/register_infected')
+def register_infected():
+    return render_template('register_infected.html')
 
-@app.route('/register_team', methods=['POST'])
-def register_team():
+@app.route('/add_infected', methods=['POST'])
+def add_infected():
     data = request.json
     team_name = data.get('teamName')
-    infected_member = data.get('infectedMember')
+    player_name = data.get('playerName')
 
-    if not team_name or not infected_member:
-        return jsonify({'success': False, 'error': 'All fields are required.'})
+    if not team_name or not player_name:
+        return jsonify({'success': False, 'error': 'Both fields are required.'})
 
-    if any(team['team_name'] == team_name for team in teams):
-        return jsonify({'success': False, 'error': 'Team name already exists.'})
+    team = next((team for team in teams if team['team_name'] == team_name), None)
 
-    new_team = {
-        'team_name': team_name,
-        'infected_member': infected_member
-    }
-    teams.append(new_team)
+    if not team:
+        return jsonify({'success': False, 'error': 'Team does not exist.'})
+
+    if player_name in team['infected_members']:
+        return jsonify({'success': False, 'error': 'Player is already infected.'})
+
+    team['infected_members'].append(player_name)
     save_team_config({'teams': teams})
 
-    return jsonify({'success': True, 'message': 'Team registered successfully!'})
+    return jsonify({'success': True, 'message': f'{player_name} added to infected members of {team_name}.'})
 
 @app.route('/solve', methods=['POST'])
 def solve_riddle():
@@ -71,9 +71,13 @@ def solve_riddle():
     riddle_part = data.get('riddlePart')
     solution = data.get('solution')
 
-    # Check if the team name is valid
-    if not any(team['team_name'] == team_name for team in teams):
+    team = next((t for t in teams if t['team_name'] == team_name), None)
+
+    if not team:
         return jsonify({'success': False, 'error': 'Invalid team name.'})
+
+    team['attempts'] += 1
+    save_team_config({'teams': teams})
 
     solved_riddles = load_solved_riddles()
 
@@ -92,21 +96,23 @@ def solve_riddle():
         solved_riddles[team_name][riddle_id] = {}
 
     if riddle_part in solved_riddles[team_name][riddle_id]:
-        # return jsonify({'success': False, 'error': 'Riddle part already solved.'})
         
         return jsonify({
             'success': True,
             'resolution': riddle['resolution'],
-            'image': riddle.get('image', None)
+            'image': image_path
         })
+        # return jsonify({'success': False, 'error': 'Riddle part already solved.'})
 
     solved_riddles[team_name][riddle_id][riddle_part] = datetime.now().isoformat()
     save_solved_riddles(solved_riddles)
 
+    image_path = f'riddle_images/{riddle_id}.png'
+
     return jsonify({
         'success': True,
         'resolution': riddle['resolution'],
-        'image': riddle.get('image', None)
+        'image': image_path
     })
 
 @app.route('/solved')
