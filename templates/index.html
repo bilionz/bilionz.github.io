@@ -12,7 +12,7 @@
         <h1>Mystery Game Solver</h1>
         <div class="solver">
             <input type="text" id="teamName" placeholder="Enter your team name">
-            <input type="text" id="riddleId" placeholder="Enter riddle ID" readonly>
+            <input type="text" id="riddleId" placeholder="Enter riddle ID">
             <select id="riddlePart">
                 <option value="A">Part A</option>
                 <option value="B">Part B</option>
@@ -25,22 +25,11 @@
             <div id="resolutionMessage">
                 <h2>Resolution:</h2>
                 <p id="resolvedText"></p>
+                <img id="resolvedImage" src="" alt="Resolution Image" style="display:none; max-width: 100%;">
             </div>
         </div>
     </div>
     <script>
-        function getUrlParameter(name) {
-            const url = new URL(window.location.href);
-            return url.searchParams.get(name);
-        }
-
-        window.onload = function() {
-            const riddleId = getUrlParameter('riddleId');
-            if (riddleId) {
-                document.getElementById('riddleId').value = riddleId;
-            }
-        };
-
         async function solveRiddle() {
             const teamName = document.getElementById('teamName').value;
             const riddleId = document.getElementById('riddleId').value;
@@ -48,6 +37,7 @@
             const solution = document.getElementById('solution').value;
             const feedbackElement = document.getElementById('feedback');
             const resolvedTextElement = document.getElementById('resolvedText');
+            const resolvedImageElement = document.getElementById('resolvedImage');
 
             if (!teamName || !riddleId || !riddlePart || !solution) {
                 feedbackElement.textContent = 'Please fill in all fields.';
@@ -66,11 +56,22 @@
                 if (data.success) {
                     resolvedTextElement.textContent = data.resolution;
                     feedbackElement.textContent = `Successfully solved by ${teamName}!`;
+
+                    // Check if the resolution image is available
+                    const riddle = data.riddle || {};
+                    if (riddle.image) {
+                        resolvedImageElement.src = `{{ url_for('static', filename='${riddle.image}') }}`;
+                        resolvedImageElement.style.display = 'block';
+                    } else {
+                        resolvedImageElement.style.display = 'none';
+                    }
                 } else {
                     feedbackElement.textContent = data.error;
+                    resolvedImageElement.style.display = 'none';
                 }
             } catch (error) {
                 feedbackElement.textContent = 'An error occurred. Please try again.';
+                resolvedImageElement.style.display = 'none';
             }
         }
     </script>

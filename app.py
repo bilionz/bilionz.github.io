@@ -9,9 +9,19 @@ with open('config.json') as config_file:
     riddles_config = json.load(config_file)
 
 # Load valid team names
-with open('team_config.json') as team_config_file:
-    team_config = json.load(team_config_file)
-    valid_teams = team_config['valid_teams']
+def load_team_config():
+    try:
+        with open('team_config.json') as team_config_file:
+            return json.load(team_config_file)
+    except FileNotFoundError:
+        return {"valid_teams": []}
+
+def save_team_config(team_config):
+    with open('team_config.json', 'w') as team_config_file:
+        json.dump(team_config, team_config_file, indent=4)
+
+team_config = load_team_config()
+valid_teams = team_config['valid_teams']
 
 def load_solved_riddles():
     try:
@@ -27,6 +37,27 @@ def save_solved_riddles(solved_riddles):
 @app.route('/')
 def index():
     return render_template('index.html')
+
+@app.route('/register')
+def register():
+    return render_template('register.html')
+
+@app.route('/register_team', methods=['POST'])
+def register_team():
+    data = request.json
+    team_name = data.get('teamName')
+    infected_member = data.get('infectedMember')
+
+    if not team_name or not infected_member:
+        return jsonify({'success': False, 'error': 'All fields are required.'})
+
+    if team_name in valid_teams:
+        return jsonify({'success': False, 'error': 'Team name already exists.'})
+
+    valid_teams.append(team_name)
+    save_team_config({'valid_teams': valid_teams})
+
+    return jsonify({'success': True, 'message': 'Team registered successfully!'})
 
 @app.route('/solve', methods=['POST'])
 def solve_riddle():

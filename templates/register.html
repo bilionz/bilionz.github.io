@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Registration</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="game-container">
+        <h1>Register Your Team</h1>
+        <div class="registration">
+            <input type="text" id="teamName" placeholder="Enter team name">
+            <input type="text" id="infectedMember" placeholder="Enter infected member">
+            <button onclick="registerTeam()">Register Team</button>
+            <div id="feedback"></div>
+        </div>
+    </div>
+    <script>
+        async function registerTeam() {
+            const teamName = document.getElementById('teamName').value;
+            const infectedMember = document.getElementById('infectedMember').value;
+            const feedbackElement = document.getElementById('feedback');
+
+            if (!teamName || !infectedMember) {
+                feedbackElement.textContent = 'Please fill in all fields.';
+                return;
+            }
+
+            try {
+                const response = await fetch('/register_team', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ teamName, infectedMember })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    feedbackElement.textContent = data.message;
+                } else {
+                    feedbackElement.textContent = data.error;
+                }
+            } catch (error) {
+                feedbackElement.textContent = 'An error occurred. Please try again.';
+            }
+        }
+    </script>
+</body>
+</html>

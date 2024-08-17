@@ -3,24 +3,28 @@
         "riddleid": "riddle1",
         "part": "A",
         "solution": "solution1A",
-        "resolution": "Congrats! You've solved Riddle 1 Part A."
+        "resolution": "Congrats! You've solved Riddle 1 Part A.",
+        "image": "riddle_images/riddle1.png"
     },
     {
         "riddleid": "riddle1",
         "part": "B",
         "solution": "solution1B",
-        "resolution": "Well done! Riddle 1 Part B is complete."
+        "resolution": "Well done! Riddle 1 Part B is complete.",
+        "image": "riddle_images/riddle1.png"
     },
     {
         "riddleid": "riddle2",
         "part": "C",
         "solution": "solution2C",
-        "resolution": "Excellent! Riddle 2 Part C solved."
+        "resolution": "Excellent! Riddle 2 Part C solved.",
+        "image": "riddle_images/riddle2.png"
     },
     {
         "riddleid": "riddle2",
         "part": "D",
         "solution": "solution2D",
-        "resolution": "Great job! Riddle 2 Part D is done."
+        "resolution": "Great job! Riddle 2 Part D is done.",
+        "image": "riddle_images/riddle2.png"
     }
 ]
