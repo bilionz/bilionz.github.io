@@ -43,7 +43,6 @@
                 document.getElementById('riddleId').value = riddleId;
             }
         };
-
         async function solveRiddle() {
             const teamName = document.getElementById('teamName').value;
             const riddleId = document.getElementById('riddleId').value;
@@ -71,10 +70,8 @@
                     resolvedTextElement.textContent = data.resolution;
                     feedbackElement.textContent = `Successfully solved by ${teamName}!`;
 
-                    // Display the resolution image if available
                     if (data.image) {
-                        resolvedImageElement.src = `{{ url_for('static', filename='${data.image}') }}`;
-                        // display the image element
+                        resolvedImageElement.src = `/static/${data.image}`;
                         resolvedImageElement.style.display = 'block';
                     } else {
                         resolvedImageElement.style.display = 'none';
