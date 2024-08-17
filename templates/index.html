@@ -3,15 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plaka's Treasure Hunt</title>
+    <title>Mystery Game Solver</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
     <div class="game-container">
-        <img src="{{ url_for('static', filename='background.png') }}" alt="Background" class="background-img">
-        <h1>Plaka's Treasure Hunt</h1>
+        <h1>Mystery Game Solver</h1>
+        <p>Welcome, {{ team_name }}! <a href="{{ url_for('logout') }}">Logout</a></p>
         <div class="solver">
-            <input type="text" id="teamName" placeholder="Enter your team name">
             <input type="text" id="riddleId" placeholder="Enter riddle ID">
             <select id="riddlePart">
                 <option value="A">Part A</option>
@@ -30,21 +29,7 @@
         </div>
     </div>
     <script>
-        // Function to get URL parameters
-        function getUrlParameter(name) {
-            const urlParams = new URLSearchParams(window.location.search);
-            return urlParams.get(name);
-        }
-
-        window.onload = function() {
-            // Prefill the riddleId from the URL parameter if available
-            const riddleId = getUrlParameter('riddleId');
-            if (riddleId) {
-                document.getElementById('riddleId').value = riddleId;
-            }
-        };
         async function solveRiddle() {
-            const teamName = document.getElementById('teamName').value;
             const riddleId = document.getElementById('riddleId').value;
             const riddlePart = document.getElementById('riddlePart').value;
             const solution = document.getElementById('solution').value;
@@ -52,7 +37,7 @@
             const resolvedTextElement = document.getElementById('resolvedText');
             const resolvedImageElement = document.getElementById('resolvedImage');
 
-            if (!teamName || !riddleId || !riddlePart || !solution) {
+            if (!riddleId || !riddlePart || !solution) {
                 feedbackElement.textContent = 'Please fill in all fields.';
                 return;
             }
@@ -61,14 +46,14 @@
                 const response = await fetch('/solve', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ teamName, riddleId, riddlePart, solution })
+                    body: JSON.stringify({ riddleId, riddlePart, solution })
                 });
 
                 const data = await response.json();
 
                 if (data.success) {
                     resolvedTextElement.textContent = data.resolution;
-                    feedbackElement.textContent = `Successfully solved by ${teamName}!`;
+                    feedbackElement.textContent = `Successfully solved!`;
 
                     if (data.image) {
                         resolvedImageElement.src = `/static/${data.image}`;

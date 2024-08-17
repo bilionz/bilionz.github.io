@@ -1,8 +1,9 @@
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, request, jsonify, render_template, redirect, url_for, session
 import json
 from datetime import datetime
 
 app = Flask(__name__)
+app.secret_key = 'your_secret_key_here'  # Change this to a secure random key
 
 # Load riddles configuration
 with open('config.json') as config_file:
@@ -35,7 +36,27 @@ def save_solved_riddles(solved_riddles):
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    if 'team_name' in session:
+        return render_template('index.html', team_name=session['team_name'])
+    return redirect(url_for('login'))
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        team_name = request.form.get('teamName')
+
+        if not any(team['team_name'] == team_name for team in teams):
+            return render_template('login.html', error='Invalid team name.')
+
+        session['team_name'] = team_name
+        return redirect(url_for('index'))
+
+    return render_template('login.html')
+
+@app.route('/logout')
+def logout():
+    session.pop('team_name', None)
+    return redirect(url_for('login'))
 
 @app.route('/register_infected')
 def register_infected():
@@ -43,12 +64,15 @@ def register_infected():
 
 @app.route('/add_infected', methods=['POST'])
 def add_infected():
+    if 'team_name' not in session:
+        return jsonify({'success': False, 'error': 'Not logged in.'})
+
     data = request.json
-    team_name = data.get('teamName')
+    team_name = session['team_name']
     player_name = data.get('playerName')
 
-    if not team_name or not player_name:
-        return jsonify({'success': False, 'error': 'Both fields are required.'})
+    if not player_name:
+        return jsonify({'success': False, 'error': 'Player name is required.'})
 
     team = next((team for team in teams if team['team_name'] == team_name), None)
 
@@ -65,8 +89,11 @@ def add_infected():
 
 @app.route('/solve', methods=['POST'])
 def solve_riddle():
+    if 'team_name' not in session:
+        return jsonify({'success': False, 'error': 'Not logged in.'})
+
     data = request.json
-    team_name = data.get('teamName')
+    team_name = session['team_name']
     riddle_id = data.get('riddleId')
     riddle_part = data.get('riddlePart')
     solution = data.get('solution')
@@ -96,13 +123,7 @@ def solve_riddle():
         solved_riddles[team_name][riddle_id] = {}
 
     if riddle_part in solved_riddles[team_name][riddle_id]:
-        
-        return jsonify({
-            'success': True,
-            'resolution': riddle['resolution'],
-            'image': image_path
-        })
-        # return jsonify({'success': False, 'error': 'Riddle part already solved.'})
+        return jsonify({'success': False, 'error': 'Riddle part already solved.'})
 
     solved_riddles[team_name][riddle_id][riddle_part] = datetime.now().isoformat()
     save_solved_riddles(solved_riddles)
