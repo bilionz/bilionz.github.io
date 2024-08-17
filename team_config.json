@@ -5,12 +5,8 @@
             "infected_member": "Alice"
         },
         {
-            "team_name": "Team Beta",
+            "team_name": "test2",
             "infected_member": "Bob"
-        },
-        {
-            "team_name": "Team Gamma",
-            "infected_member": "Charlie"
         }
     ]
 }
