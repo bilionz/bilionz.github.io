@@ -30,6 +30,20 @@
         </div>
     </div>
     <script>
+        // Function to get URL parameters
+        function getUrlParameter(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        window.onload = function() {
+            // Prefill the riddleId from the URL parameter if available
+            const riddleId = getUrlParameter('riddleId');
+            if (riddleId) {
+                document.getElementById('riddleId').value = riddleId;
+            }
+        };
+
         async function solveRiddle() {
             const teamName = document.getElementById('teamName').value;
             const riddleId = document.getElementById('riddleId').value;
