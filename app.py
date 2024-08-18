@@ -12,7 +12,7 @@ TEAM_CONFIG_PATH = os.path.join(DATA_DIR, 'team_config.json')
 SOLVED_RIDDLES_PATH = os.path.join(DATA_DIR, 'solved_riddles.json')
 
 # Flag to determine whether to replace existing data on deploy
-REPLACE_ON_DEPLOY = False
+REPLACE_ON_DEPLOY = True
 
 # Initialize data storage
 os.makedirs(DATA_DIR, exist_ok=True)
