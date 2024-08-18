@@ -70,6 +70,32 @@ def logout():
     session.pop('team_name', None)
     return redirect(url_for('login'))
 
+@app.route('/register')
+def register():
+    return render_template('register.html')
+
+@app.route('/register_team', methods=['POST'])
+def register_team():
+    data = request.json
+    team_name = data.get('teamName')
+    infected_member = data.get('infectedMember')
+
+    if not team_name or not infected_member:
+        return jsonify({'success': False, 'error': 'All fields are required.'})
+
+    if any(team['team_name'] == team_name for team in teams):
+        return jsonify({'success': False, 'error': 'Team name already exists.'})
+
+    new_team = {
+        'team_name': team_name,
+        'infected_members': [infected_member],
+        'attempts': 0
+    }
+    teams.append(new_team)
+    save_json(TEAM_CONFIG_PATH, {'teams': teams})
+
+    return jsonify({'success': True, 'message': 'Team registered successfully!'})
+
 @app.route('/riddle_s')
 def riddle_s():
     if 'team_name' not in session:
