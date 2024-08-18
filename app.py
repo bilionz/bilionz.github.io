@@ -1,38 +1,50 @@
 from flask import Flask, request, jsonify, render_template, redirect, url_for, session
 import json
+import os
 from datetime import datetime
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key_here'  # Change this to a secure random key
 
+# Paths for persistent storage
+DATA_DIR = '/mnt/data'
+TEAM_CONFIG_PATH = os.path.join(DATA_DIR, 'team_config.json')
+SOLVED_RIDDLES_PATH = os.path.join(DATA_DIR, 'solved_riddles.json')
+
+# Flag to determine whether to replace existing data on deploy
+REPLACE_ON_DEPLOY = False
+
+# Initialize data storage
+os.makedirs(DATA_DIR, exist_ok=True)
+
+def load_json(file_path, default):
+    if os.path.exists(file_path):
+        with open(file_path, 'r') as file:
+            return json.load(file)
+    return default
+
+def save_json(file_path, data):
+    with open(file_path, 'w') as file:
+        json.dump(data, file, indent=4)
+
 # Load riddles configuration
-with open('config.json') as config_file:
-    riddles_config = json.load(config_file)
+riddles_config = load_json('riddles.json', [])
 
-def load_team_config():
-    try:
-        with open('team_config.json') as team_config_file:
-            return json.load(team_config_file)
-    except FileNotFoundError:
-        return {"teams": []}
+# Load or initialize team configuration
+if REPLACE_ON_DEPLOY or not os.path.exists(TEAM_CONFIG_PATH):
+    team_config = {"teams": []}
+    save_json(TEAM_CONFIG_PATH, team_config)
+else:
+    team_config = load_json(TEAM_CONFIG_PATH, {"teams": []})
 
-def save_team_config(team_config):
-    with open('team_config.json', 'w') as team_config_file:
-        json.dump(team_config, team_config_file, indent=4)
-
-team_config = load_team_config()
 teams = team_config['teams']
 
-def load_solved_riddles():
-    try:
-        with open('solved_riddles.json') as solved_file:
-            return json.load(solved_file)
-    except FileNotFoundError:
-        return {}
-
-def save_solved_riddles(solved_riddles):
-    with open('solved_riddles.json', 'w') as solved_file:
-        json.dump(solved_riddles, solved_file, indent=4)
+# Load or initialize solved riddles
+if REPLACE_ON_DEPLOY or not os.path.exists(SOLVED_RIDDLES_PATH):
+    solved_riddles = {}
+    save_json(SOLVED_RIDDLES_PATH, solved_riddles)
+else:
+    solved_riddles = load_json(SOLVED_RIDDLES_PATH, {})
 
 @app.route('/')
 def index():
@@ -70,7 +82,7 @@ def riddle_s():
 
         if team and auto_player not in team['infected_members']:
             team['infected_members'].append(auto_player)
-            save_team_config({'teams': teams})
+            save_json(TEAM_CONFIG_PATH, {'teams': teams})
 
     return render_template('riddle_s.html')
 
@@ -95,7 +107,7 @@ def add_infected():
         return jsonify({'success': False, 'error': 'Player is already infected.'})
 
     team['infected_members'].append(player_name)
-    save_team_config({'teams': teams})
+    save_json(TEAM_CONFIG_PATH, {'teams': teams})
 
     return jsonify({'success': True, 'message': f'{player_name} added to infected members of {team_name}.'})
 
@@ -115,8 +127,6 @@ def solve_riddle():
     if not team:
         return jsonify({'success': False, 'error': 'Invalid team name.'})
 
-    solved_riddles = load_solved_riddles()
-
     if team_name not in solved_riddles:
         solved_riddles[team_name] = {}
 
@@ -134,28 +144,20 @@ def solve_riddle():
     riddle = next((r for r in riddles_config if r['riddleid'] == riddle_id and r['part'] == riddle_part), None)
 
     if not riddle:
+        save_json(SOLVED_RIDDLES_PATH, solved_riddles)
         return jsonify({'success': False, 'error': 'Invalid riddle ID or part.'})
 
     if riddle['solution'] != solution:
-        save_solved_riddles(solved_riddles)
+        save_json(SOLVED_RIDDLES_PATH, solved_riddles)
         return jsonify({'success': False, 'error': 'Incorrect solution.'})
-    # check if image exists
-    if riddle['image']:
-        image_path = f'riddle_images/{riddle_id}.png'
-    else:
-        image_path = None
 
     if solved_riddles[team_name][riddle_id][riddle_part]['solved_at']:
-        # return jsonify({'success': False, 'error': 'Riddle part already solved.'})
-        image_path = f'riddle_images/{riddle_id}.png'
-        return jsonify({
-            'success': True,
-            'resolution': riddle['resolution'],
-            'image': image_path
-        })
+        return jsonify({'success': False, 'error': 'Riddle part already solved.'})
 
     solved_riddles[team_name][riddle_id][riddle_part]['solved_at'] = datetime.now().isoformat()
-    save_solved_riddles(solved_riddles)
+    save_json(SOLVED_RIDDLES_PATH, solved_riddles)
+
+    image_path = f'riddle_images/{riddle_id}.png'
 
     return jsonify({
         'success': True,
@@ -165,7 +167,7 @@ def solve_riddle():
 
 @app.route('/solved')
 def solved():
-    return render_template('solved.html', teams=teams, solved_riddles=load_solved_riddles())
+    return render_template('solved.html', teams=teams, solved_riddles=solved_riddles)
 
 @app.route('/get_team_data')
 def get_team_data():
@@ -173,7 +175,7 @@ def get_team_data():
 
 @app.route('/get_solved_riddles')
 def get_solved_riddles():
-    return jsonify(load_solved_riddles())
+    return jsonify(solved_riddles)
 
 if __name__ == '__main__':
     app.run(debug=True)
