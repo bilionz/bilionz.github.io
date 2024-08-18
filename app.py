@@ -15,7 +15,7 @@ SOLVED_RIDDLES_PATH = os.path.join(DATA_DIR, 'solved_riddles.json')
 RIDDLE_PATHS_PATH = os.path.join(DATA_DIR, 'riddle_paths.json')
 
 # Flag to determine whether to replace existing data on deploy
-REPLACE_ON_DEPLOY = False
+REPLACE_ON_DEPLOY = True
 
 # Initialize data storage
 os.makedirs(DATA_DIR, exist_ok=True)
