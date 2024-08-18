@@ -11,23 +11,25 @@
         <h1>Plaka Treasure Hunt</h1>
         <p>Welcome, {{ team_name }}! <a href="{{ url_for('logout') }}">Logout</a></p>
         <div class="solver">
+            <input type="text" id="riddleId" placeholder="Enter riddle ID" value="{{ request.args.get('riddleId', '') }}">
             <input type="text" id="solution" placeholder="Enter solution">
             <button onclick="solveRiddle()">Solve Riddle!</button>
             <div id="feedback"></div>
-            <div id="resolutionMessage">
-                <h2>Next Riddle:</h2>
-                <p id="resolvedText"></p>
+            <div id="narrativeMessage">
+                <h2>Next Step:</h2>
+                <p id="narrativeText"></p>
             </div>
         </div>
     </div>
     <script>
         async function solveRiddle() {
+            const riddleId = document.getElementById('riddleId').value;
             const solution = document.getElementById('solution').value;
             const feedbackElement = document.getElementById('feedback');
-            const resolvedTextElement = document.getElementById('resolvedText');
+            const narrativeTextElement = document.getElementById('narrativeText');
 
-            if (!solution) {
-                feedbackElement.textContent = 'Please enter a solution.';
+            if (!riddleId || !solution) {
+                feedbackElement.textContent = 'Please fill in all fields.';
                 return;
             }
 
@@ -35,19 +37,21 @@
                 const response = await fetch('/solve', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ solution })
+                    body: JSON.stringify({ riddleId, solution })
                 });
 
                 const data = await response.json();
 
                 if (data.success) {
-                    resolvedTextElement.textContent = data.narrative;
-                    feedbackElement.textContent = 'Correct! Here is your next riddle.';
+                    feedbackElement.textContent = 'Correct answer!';
+                    narrativeTextElement.textContent = data.narrative;
                 } else {
                     feedbackElement.textContent = data.error;
+                    narrativeTextElement.textContent = '';
                 }
             } catch (error) {
                 feedbackElement.textContent = 'An error occurred. Please try again.';
+                narrativeTextElement.textContent = '';
             }
         }
     </script>
