@@ -176,14 +176,23 @@ def solve_riddle():
     if riddle['solution'] != solution:
         save_json(SOLVED_RIDDLES_PATH, solved_riddles)
         return jsonify({'success': False, 'error': 'Incorrect solution.'})
+    
+    # check if riddle has image
+    image_path = None
+    if 'image' in riddle:
+        image_path = f'riddle_images/{riddle_id}.png'
 
     if solved_riddles[team_name][riddle_id][riddle_part]['solved_at']:
-        return jsonify({'success': False, 'error': 'Riddle part already solved.'})
+        # return jsonify({'success': False, 'error': 'Riddle part already solved.'})
+        return jsonify({
+            'success': True,
+            'resolution': riddle['resolution'],
+            'image': image_path
+        })
+
 
     solved_riddles[team_name][riddle_id][riddle_part]['solved_at'] = datetime.now().isoformat()
     save_json(SOLVED_RIDDLES_PATH, solved_riddles)
-
-    image_path = f'riddle_images/{riddle_id}.png'
 
     return jsonify({
         'success': True,

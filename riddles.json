@@ -14,6 +14,12 @@
         "image": "test.png"
     },
     {
+        "riddleid": "test",
+        "part": "B",
+        "solution": "test",
+        "resolution": "Congrats! You've solved Riddle 1 Part B"
+    },
+    {
         "riddleid": "riddle1",
         "part": "B",
         "solution": "solution1B",
