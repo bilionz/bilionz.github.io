@@ -11,34 +11,23 @@
         <h1>Plaka Treasure Hunt</h1>
         <p>Welcome, {{ team_name }}! <a href="{{ url_for('logout') }}">Logout</a></p>
         <div class="solver">
-            <input type="text" id="riddleId" placeholder="Enter riddle ID">
-            <select id="riddlePart">
-                <option value="A">Part A</option>
-                <option value="B">Part B</option>
-                <option value="C">Part C</option>
-                <option value="D">Part D</option>
-            </select>
             <input type="text" id="solution" placeholder="Enter solution">
             <button onclick="solveRiddle()">Solve Riddle!</button>
             <div id="feedback"></div>
             <div id="resolutionMessage">
-                <h2>Resolution:</h2>
+                <h2>Next Riddle:</h2>
                 <p id="resolvedText"></p>
-                <img id="resolvedImage" src="" alt="Resolution Image" style="display:none; max-width: 100%; margin-top: 10px;">
             </div>
         </div>
     </div>
     <script>
         async function solveRiddle() {
-            const riddleId = document.getElementById('riddleId').value;
-            const riddlePart = document.getElementById('riddlePart').value;
             const solution = document.getElementById('solution').value;
             const feedbackElement = document.getElementById('feedback');
             const resolvedTextElement = document.getElementById('resolvedText');
-            const resolvedImageElement = document.getElementById('resolvedImage');
 
-            if (!riddleId || !riddlePart || !solution) {
-                feedbackElement.textContent = 'Please fill in all fields.';
+            if (!solution) {
+                feedbackElement.textContent = 'Please enter a solution.';
                 return;
             }
 
@@ -46,28 +35,19 @@
                 const response = await fetch('/solve', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ riddleId, riddlePart, solution })
+                    body: JSON.stringify({ solution })
                 });
 
                 const data = await response.json();
 
                 if (data.success) {
-                    resolvedTextElement.textContent = data.resolution;
-                    feedbackElement.textContent = `Successfully solved!`;
-
-                    if (data.image) {
-                        resolvedImageElement.src = `/static/${data.image}`;
-                        resolvedImageElement.style.display = 'block';
-                    } else {
-                        resolvedImageElement.style.display = 'none';
-                    }
+                    resolvedTextElement.textContent = data.narrative;
+                    feedbackElement.textContent = 'Correct! Here is your next riddle.';
                 } else {
                     feedbackElement.textContent = data.error;
-                    resolvedImageElement.style.display = 'none';
                 }
             } catch (error) {
                 feedbackElement.textContent = 'An error occurred. Please try again.';
-                resolvedImageElement.style.display = 'none';
             }
         }
     </script>

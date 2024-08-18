@@ -1,0 +1,4 @@
+{
+    "path1": ["start", "next"],
+    "path2": ["next", "start"]
+}
