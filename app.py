@@ -146,7 +146,7 @@ def solve_riddle():
     team_name = session['team_name']
     riddle_id = data.get('riddleId')
     riddle_part = data.get('riddlePart')
-    solution = data.get('solution')
+    solution = data.get('solution') 
 
     team = next((t for t in teams if t['team_name'] == team_name), None)
 
@@ -176,7 +176,7 @@ def solve_riddle():
     if riddle['solution'] != solution:
         save_json(SOLVED_RIDDLES_PATH, solved_riddles)
         return jsonify({'success': False, 'error': 'Incorrect solution.'})
-    
+
     # check if riddle has image
     image_path = None
     if 'image' in riddle:
