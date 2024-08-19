@@ -8,7 +8,6 @@
 </head>
 <body>
     <div class="game-container"> 
-        
         <h1>Plaka Treasure Hunt</h1>
         <p>Welcome, {{ team_name }}! <a href="{{ url_for('logout') }}">Logout</a></p>
         <div class="solver">
@@ -18,7 +17,7 @@
                 <option value="B">Part B</option>
                 <option value="C">Part C</option>
                 <option value="D">Part D</option>
-                <option value="D">Part E</option>
+                <option value="E">Part E</option>
             </select>
             <input type="text" id="solution" placeholder="Enter solution">
             <button onclick="solveRiddle()">Solve Riddle!</button>
@@ -31,6 +30,20 @@
         </div>
     </div>
     <script>
+        // Function to get URL parameters
+        function getUrlParameter(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        // Prefill riddleId from URL parameter
+        document.addEventListener('DOMContentLoaded', () => {
+            const riddleIdParam = getUrlParameter('riddleId');
+            if (riddleIdParam) {
+                document.getElementById('riddleId').value = riddleIdParam;
+            }
+        });
+
         async function solveRiddle() {
             const riddleId = document.getElementById('riddleId').value;
             const riddlePart = document.getElementById('riddlePart').value;
@@ -55,7 +68,7 @@
 
                 if (data.success) {
                     resolvedTextElement.textContent = data.resolution;
-                    feedbackElement.textContent = `Successfully solved!`;
+                    feedbackElement.textContent = 'Successfully solved!';
 
                     if (data.image) {
                         resolvedImageElement.src = `/static/${data.image}`;
