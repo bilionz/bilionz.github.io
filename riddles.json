@@ -2,43 +2,367 @@
     {
         "riddleid": "start",
         "part": "A",
-        "solution": "weareready",
-        "resolution": "Congrats! You've solved Riddle 1 Part A.",
-        "image": "test.png"
+        "solution": "wearereadyA",
+        "resolution": "Nestled between craggy cliffs and the relentless tide lies Plaka, a village long abandoned and steeped in haunting tales. Once a thriving community, it fell into decay after being cursed by the arrival of the Leper King, a child exiled to the nearby barren island of Spinalonga due to his disfigurement. Shunned from birth, the child grew bitter in his isolation. As the years passed, he crafted a raft from the bones of the dead and returned to Plaka under the guise of a shipwrecked sailor, concealing his true nature. The villagers, unaware of his affliction, took pity on him, offering shelter and food. Slowly, the disease he carried spread through the village. As the illness ravaged their bodies, the villagers realized too late that they had been deceived. In their despair, they cursed the Leper King, binding his spirit to the village he had destroyed, condemning him to an eternity of suffering. Years later, stories of Plaka's fate became legend, a ghostly tale whispered to frighten children on stormy nights. Drawn by the thrill of the unknown, a group of young travelers ventured into the forsaken village. Under the light of a full moon, they stumbled upon the ancient graveyard, where they discovered a disturbed grave. The earth was freshly turned, and the coffin lid lay askew. Carved into the stone was a chilling inscription: \"O my master, I await thy return, upon the sixtieth year on the day of the greatest moon...\" As they stood there, a gust of wind delivered a blood-stained parchment into their hands. The message, from a doomed adventurer before them, implored for help, revealing that hints to stop the Leper King were hidden throughout the village. It was a plea for salvation, casting the travelers into a desperate quest … Your task begins now. Your objectives are: - Figure out how to stop the Leper King - Avoid getting (all) infected But beware, the Leper King and his servants walk among you, and have left cursed items and traps around… Your starting clue is: Εκεί υπάρχουν Κάτοικοι που δεν έχουν ζωή, αλλά αν δεν τους κρατάς θα φύγουν. Αν 666 είναι ο αριθμός του διαβόλου ποιος είναι ο αριθμός του αφέντη Χριστού ? $αριθμός"
     },
     {
         "riddleid": "test",
         "part": "A",
         "solution": "test",
-        "resolution": "Congrats! You've solved Riddle 1 Part A.",
-        "image": "test.png"
+        "resolution": "Nestled between craggy cliffs and the relentless tide lies Plaka, a village long abandoned and steeped in haunting tales. Once a thriving community, it fell into decay after being cursed by the arrival of the Leper King, a child exiled to the nearby barren island of Spinalonga due to his disfigurement. Shunned from birth, the child grew bitter in his isolation. As the years passed, he crafted a raft from the bones of the dead and returned to Plaka under the guise of a shipwrecked sailor, concealing his true nature. The villagers, unaware of his affliction, took pity on him, offering shelter and food. Slowly, the disease he carried spread through the village. As the illness ravaged their bodies, the villagers realized too late that they had been deceived. In their despair, they cursed the Leper King, binding his spirit to the village he had destroyed, condemning him to an eternity of suffering. Years later, stories of Plaka's fate became legend, a ghostly tale whispered to frighten children on stormy nights. Drawn by the thrill of the unknown, a group of young travelers ventured into the forsaken village. Under the light of a full moon, they stumbled upon the ancient graveyard, where they discovered a disturbed grave. The earth was freshly turned, and the coffin lid lay askew. Carved into the stone was a chilling inscription: \"O my master, I await thy return, upon the sixtieth year on the day of the greatest moon...\" As they stood there, a gust of wind delivered a blood-stained parchment into their hands. The message, from a doomed adventurer before them, implored for help, revealing that hints to stop the Leper King were hidden throughout the village. It was a plea for salvation, casting the travelers into a desperate quest … Your task begins now. Your objectives are: - Figure out how to stop the Leper King - Avoid getting (all) infected But beware, the Leper King and his servants walk among you, and have left cursed items and traps around… Your starting clue is: Εκεί υπάρχουν Κάτοικοι που δεν έχουν ζωή, αλλά αν δεν τους κρατάς θα φύγουν. Αν 666 είναι ο αριθμός του διαβόλου ποιος είναι ο αριθμός του αφέντη Χριστού ? $αριθμός"
     },
     {
-        "riddleid": "test",
+        "riddleid": "meg_molos",
+        "part": "A",
+        "solution": "162",
+        "resolution": "Πόσες ακέραιες δεκάδες πούπουλα έχουν οι μαύροι γρύπες της Πλάκας? $αριθμός"
+    },
+    {
+        "riddleid": "pigad",
+        "part": "A",
+        "solution": "TODO",
+        "resolution": "Για πληροφορίες: 693χχ127χχ. $αριθμός"
+    },
+    {
+        "riddleid": "torent",
+        "part": "A",
+        "solution": "2269",
+        "resolution": "Όπου η απουσία είναι η μόνη παρουσία. Κεραμέως του έτους : χχχχ. $Χρονολογία."
+    },
+    {
+        "riddleid": "gy",
+        "part": "A",
+        "solution": "1991",
+        "resolution": "Το νέο στέκι των Μποκλάνοβιτς. Ας προσθέσουμε όλα τα έκτακτα. $Αριθμός."
+    },
+    {
+        "riddleid": "kinder",
+        "part": "A",
+        "solution": "465",
+        "resolution": "Στο τέλος του δρόμου που ξεκινούν οι ολυμπκοί αγώες. Σε ποια πόλη γίνονται ? $λέξη"
+    },
+    {
+        "riddleid": "olymp",
+        "part": "A",
+        "solution": "PAIS",
+        "resolution": "Από ποιόν πλανήτη ήρθε η ηλεκτροκίνηση στην Πλάκα? $λέξη"
+    },
+    {
+        "riddleid": "ebike",
+        "part": "A",
+        "solution": "MERCURY",
+        "resolution": "Εκεί υψώνονται καθημερινά ασπίδες. Τι χρώμα έχει το αλουμίνιο ? $λέξη στα αγγλικά"
+    },
+    {
+        "riddleid": "tserts",
+        "part": "A",
+        "solution": "8",
+        "resolution": "Εκεί υψώνονται καθημερινά ασπίδες. Τι χρώμα έχει το αλουμίνιο ? $λέξη στα αγγλικά"
+    },
+    {
+        "riddleid": "beach_org",
+        "part": "A",
+        "solution": "yellow",
+        "resolution": "Σύμφωνα με το ΦΕΚ:2916/Β/31-12-2015,πόσο πρέπει να πληρώσουν 10 φοιτητούδια για να πάνε στην Σπιναλόνγκα ? $αριθμός"
+    },
+    {
+        "riddleid": "mik_molos",
+        "part": "A",
+        "solution": "40",
+        "resolution": "Στα μάτια, το μεγαλύτερο. Όταν το βρεις σημείωσε τις συντεταγμένες σου με λεπτομέρεια, και γράψε “weareready”."
+    },
+    {
+        "riddleid": "mati",
+        "part": "A",
+        "solution": "weareready",
+        "resolution": "You have gathered all the required information to figure out how to beat the leper king. Find the Game Master and answer the final riddle. Your code is 1991A."
+    },
+    {
+        "riddleid": "start",
         "part": "B",
-        "solution": "test",
-        "resolution": "Congrats! You've solved Riddle 1 Part B"
+        "solution": "wearereadyB",
+        "resolution": "Nestled between craggy cliffs and the relentless tide lies Plaka, a village long abandoned and steeped in haunting tales. Once a thriving community, it fell into decay after being cursed by the arrival of the Leper King, a child exiled to the nearby barren island of Spinalonga due to his disfigurement. Shunned from birth, the child grew bitter in his isolation. As the years passed, he crafted a raft from the bones of the dead and returned to Plaka under the guise of a shipwrecked sailor, concealing his true nature. The villagers, unaware of his affliction, took pity on him, offering shelter and food. Slowly, the disease he carried spread through the village. As the illness ravaged their bodies, the villagers realized too late that they had been deceived. In their despair, they cursed the Leper King, binding his spirit to the village he had destroyed, condemning him to an eternity of suffering. Years later, stories of Plaka's fate became legend, a ghostly tale whispered to frighten children on stormy nights. Drawn by the thrill of the unknown, a group of young travelers ventured into the forsaken village. Under the light of a full moon, they stumbled upon the ancient graveyard, where they discovered a disturbed grave. The earth was freshly turned, and the coffin lid lay askew. Carved into the stone was a chilling inscription: \"O my master, I await thy return, upon the sixtieth year on the day of the greatest moon...\" As they stood there, a gust of wind delivered a blood-stained parchment into their hands. The message, from a doomed adventurer before them, implored for help, revealing that hints to stop the Leper King were hidden throughout the village. It was a plea for salvation, casting the travelers into a desperate quest … Your task begins now. Your objectives are: - Figure out how to stop the Leper King - Avoid getting (all) infected But beware, the Leper King and his servants walk among you, and have left cursed items and traps around… Your starting clue is: Το «αφτεράδικο» της πλάκας. Παράσταση: «Εκδήλωση ενεργητικού αντισυστημικού ενδιαφέροντος» , αριθμός εισιτηρίου : χχχχ. $Αριθμός Τετραψήφιο."
     },
     {
-        "riddleid": "riddle1",
+        "riddleid": "sters",
         "part": "B",
-        "solution": "solution1B",
-        "resolution": "Well done! Riddle 1 Part B is complete.",
-        "image": "riddle_images/riddle1.png"
+        "solution": "1312",
+        "resolution": "Όπου η απουσία είναι η μόνη παρουσία. Κεραμέως του έτους : χχχχ. $Χρονολογία."
     },
     {
-        "riddleid": "riddle2",
+        "riddleid": "gy",
+        "part": "B",
+        "solution": "1991",
+        "resolution": "Η βάρκα που ήθελε να γίνει ταμπέλα για στάθμευση αλλά την πρόλαβε ο γείτονας. Ναν? $αριθμός"
+    },
+    {
+        "riddleid": "buspark",
+        "part": "B",
+        "solution": "116",
+        "resolution": "Για πληροφορίες: 693χχ127χχ. $αριθμός"
+    },
+    {
+        "riddleid": "torent",
+        "part": "B",
+        "solution": "2269",
+        "resolution": "Σύμφωνα με το ΦΕΚ:2916/Β/31-12-2015,πόσο πρέπει να πληρώσουν 10 φοιτητούδια για να πάνε στην Σπιναλόνγκα ? $αριθμός"
+    },
+    {
+        "riddleid": "mik_molos",
+        "part": "B",
+        "solution": "40",
+        "resolution": "Εκεί υψώνονται καθημερινά ασπίδες. Τι χρώμα έχει το αλουμίνιο ? $λέξη στα αγγλικάσσ"
+    },
+    {
+        "riddleid": "beach_org",
+        "part": "B",
+        "solution": "yellow",
+        "resolution": "Στο τέλος του δρόμου που ξεκινούν οι ολυμπκοί αγώες. Σε ποια πόλη γίνονται ? $λέξη"
+    },
+    {
+        "riddleid": "olymp",
+        "part": "B",
+        "solution": "PAIS",
+        "resolution": "Στο μικρότερο καμπαναριό. Ποιόν μήνα φτιάχτηκε? $αριθμός"
+    },
+    {
+        "riddleid": "tserts",
+        "part": "B",
+        "solution": "8",
+        "resolution": "Από ποιόν πλανήτη ήρθε η ηλεκτροκίνηση στην Πλάκα? $λέξη"
+    },
+    {
+        "riddleid": "ebike",
+        "part": "B",
+        "solution": "MERCURY",
+        "resolution": "Εκεί υπάρχουν Κάτοικοι που δεν έχουν ζωή, αλλά αν δεν τους κρατάς θα φύγουν. Αν 666 είναι ο αριθμός του διαβόλου ποιος είναι ο αριθμός του αφέντη Χριστού ? $αριθμός"
+    },
+    {
+        "riddleid": "meg_molos",
+        "part": "B",
+        "solution": "162",
+        "resolution": "Στα μάτια, το μεγαλύτερο. Όταν το βρεις σημείωσε τις συντεταγμένες σου με λεπτομέρεια, και γράψε “weareready”."
+    },
+    {
+        "riddleid": "mati",
+        "part": "B",
+        "solution": "weareready",
+        "resolution": "You have gathered all the required information to figure out how to beat the leper king. Find the Game Master and answer the final riddle."
+    },
+    {
+        "riddleid": "start",
         "part": "C",
-        "solution": "solution2C",
-        "resolution": "Excellent! Riddle 2 Part C solved.",
-        "image": "riddle_images/riddle2.png"
+        "solution": "wearereadyC",
+        "resolution": "Nestled between craggy cliffs and the relentless tide lies Plaka, a village long abandoned and steeped in haunting tales. Once a thriving community, it fell into decay after being cursed by the arrival of the Leper King, a child exiled to the nearby barren island of Spinalonga due to his disfigurement. Shunned from birth, the child grew bitter in his isolation. As the years passed, he crafted a raft from the bones of the dead and returned to Plaka under the guise of a shipwrecked sailor, concealing his true nature. The villagers, unaware of his affliction, took pity on him, offering shelter and food. Slowly, the disease he carried spread through the village. As the illness ravaged their bodies, the villagers realized too late that they had been deceived. In their despair, they cursed the Leper King, binding his spirit to the village he had destroyed, condemning him to an eternity of suffering. Years later, stories of Plaka's fate became legend, a ghostly tale whispered to frighten children on stormy nights. Drawn by the thrill of the unknown, a group of young travelers ventured into the forsaken village. Under the light of a full moon, they stumbled upon the ancient graveyard, where they discovered a disturbed grave. The earth was freshly turned, and the coffin lid lay askew. Carved into the stone was a chilling inscription: \"O my master, I await thy return, upon the sixtieth year on the day of the greatest moon...\" As they stood there, a gust of wind delivered a blood-stained parchment into their hands. The message, from a doomed adventurer before them, implored for help, revealing that hints to stop the Leper King were hidden throughout the village. It was a plea for salvation, casting the travelers into a desperate quest … Your task begins now. Your objectives are: - Figure out how to stop the Leper King - Avoid getting (all) infected But beware, the Leper King and his servants walk among you, and have left cursed items and traps around… Your starting clue is: Στο μικρότερο καμπαναριό. Ποιόν μήνα φτιάχτηκε? $αριθμός"
     },
     {
-        "riddleid": "riddle2",
+        "riddleid": "tserts",
+        "part": "C",
+        "solution": "8",
+        "resolution": "Για πληροφορίες: 693χχ127χχ. $αριθμός"
+    },
+    {
+        "riddleid": "torent",
+        "part": "C",
+        "solution": "2269",
+        "resolution": "Θέατρο : Το «αφτεράδικο» της πλάκας. Παράσταση: «Εκδήλωση ενεργητικού αντισυστημικού ενδιαφέροντος» , αριθμός εισιτηρίου : χχχχ. $Αριθμός Τετραψήφιο."
+    },
+    {
+        "riddleid": "sters",
+        "part": "C",
+        "solution": "1312",
+        "resolution": "Εκεί υπάρχουν Κάτοικοι που δεν έχουν ζωή, αλλά αν δεν τους κρατάς θα φύγουν. Αν 666 είναι ο αριθμός του διαβόλου ποιος είναι ο αριθμός του αφέντη Χριστού ? $αριθμός"
+    },
+    {
+        "riddleid": "meg_molos",
+        "part": "C",
+        "solution": "162",
+        "resolution": "Στο τέλος του δρόμου που ξεκινούν οι ολυμπκοί αγώες. Σε ποια πόλη γίνονται ? $λέξη"
+    },
+    {
+        "riddleid": "olymp",
+        "part": "C",
+        "solution": "PAIS",
+        "resolution": "Από ποιόν πλανήτη ήρθε η ηλεκτροκίνηση στην Πλάκα? $λέξη"
+    },
+    {
+        "riddleid": "ebike",
+        "part": "C",
+        "solution": "MERCURY",
+        "resolution": "Όπου η απουσία είναι η μόνη παρουσία. Κεραμέως του έτους : χχχχ. $Χρονολογία."
+    },
+    {
+        "riddleid": "gy",
+        "part": "C",
+        "solution": "1991",
+        "resolution": "Πόσες ακέραιες δεκάδες πούπουλα έχουν οι μαύροι γρύπες της Πλάκας? $αριθμός"
+    },
+    {
+        "riddleid": "pigad",
+        "part": "C",
+        "solution": "TODO",
+        "resolution": "Σύμφωνα με το ΦΕΚ:2916/Β/31-12-2015,πόσο πρέπει να πληρώσουν 10 φοιτητούδια για να πάνε στην Σπιναλόνγκα ? $αριθμός"
+    },
+    {
+        "riddleid": "mik_molos",
+        "part": "C",
+        "solution": "40",
+        "resolution": "Εκεί υψώνονται καθημερινά ασπίδες. Τι χρώμα έχει το αλουμίνιο ? $λέξη στα αγγλικά"
+    },
+    {
+        "riddleid": "beach_org",
+        "part": "C",
+        "solution": "yellow",
+        "resolution": "Στα μάτια, το μεγαλύτερο. Όταν το βρεις σημείωσε τις συντεταγμένες σου με λεπτομέρεια, και γράψε “weareready”."
+    },
+    {
+        "riddleid": "mati",
+        "part": "C",
+        "solution": "weareready",
+        "resolution": "You have gathered all the required information to figure out how to beat the leper king. Find the Game Master and answer the final riddle."
+    },
+    {
+        "riddleid": "start",
         "part": "D",
-        "solution": "solution2D",
-        "resolution": "Great job! Riddle 2 Part D is done.",
-        "image": "riddle_images/riddle2.png"
+        "solution": "wearereadyD",
+        "resolution": "Nestled between craggy cliffs and the relentless tide lies Plaka, a village long abandoned and steeped in haunting tales. Once a thriving community, it fell into decay after being cursed by the arrival of the Leper King, a child exiled to the nearby barren island of Spinalonga due to his disfigurement. Shunned from birth, the child grew bitter in his isolation. As the years passed, he crafted a raft from the bones of the dead and returned to Plaka under the guise of a shipwrecked sailor, concealing his true nature. The villagers, unaware of his affliction, took pity on him, offering shelter and food. Slowly, the disease he carried spread through the village. As the illness ravaged their bodies, the villagers realized too late that they had been deceived. In their despair, they cursed the Leper King, binding his spirit to the village he had destroyed, condemning him to an eternity of suffering. Years later, stories of Plaka's fate became legend, a ghostly tale whispered to frighten children on stormy nights. Drawn by the thrill of the unknown, a group of young travelers ventured into the forsaken village. Under the light of a full moon, they stumbled upon the ancient graveyard, where they discovered a disturbed grave. The earth was freshly turned, and the coffin lid lay askew. Carved into the stone was a chilling inscription: \"O my master, I await thy return, upon the sixtieth year on the day of the greatest moon...\" As they stood there, a gust of wind delivered a blood-stained parchment into their hands. The message, from a doomed adventurer before them, implored for help, revealing that hints to stop the Leper King were hidden throughout the village. It was a plea for salvation, casting the travelers into a desperate quest … Your task begins now. Your objectives are: - Figure out how to stop the Leper King - Avoid getting (all) infected But beware, the Leper King and his servants walk among you, and have left cursed items and traps around… Your starting clue is: Εκεί υψώνονται καθημερινά ασπίδες. Τι χρώμα έχει το αλουμίνιο ? $λέξη στα αγγλικά"
+    },
+    {
+        "riddleid": "beach_org",
+        "part": "D",
+        "solution": "yellow",
+        "resolution": "Η βάρκα που ήθελε να γίνει ταμπέλα για στάθμευση αλλά την πρόλαβε ο γείτονας. Ναν? $αριθμός"
+    },
+    {
+        "riddleid": "buspark",
+        "part": "D",
+        "solution": "116",
+        "resolution": "Για πληροφορίες: 693χχ127χχ. $αριθμός"
+    },
+    {
+        "riddleid": "torent",
+        "part": "D",
+        "solution": "2269",
+        "resolution": "Στο τέλος του δρόμου που ξεκινούν οι ολυμπκοί αγώες. Σε ποια πόλη γίνονται ? $λέξη"
+    },
+    {
+        "riddleid": "olymp",
+        "part": "D",
+        "solution": "PAIS",
+        "resolution": "Το νέο στέκι των Μποκλάνοβιτς. Ας προσθέσουμε όλα τα έκτακτα. $Αριθμός."
+    },
+    {
+        "riddleid": "kinder",
+        "part": "D",
+        "solution": "465",
+        "resolution": "Όπου η απουσία είναι η μόνη παρουσία. Κεραμέως του έτους : χχχχ. $Χρονολογία."
+    },
+    {
+        "riddleid": "gy",
+        "part": "D",
+        "solution": "1991",
+        "resolution": "Σύμφωνα με το ΦΕΚ:2916/Β/31-12-2015,πόσο πρέπει να πληρώσουν 10 φοιτητούδια για να πάνε στην Σπιναλόνγκα ? $αριθμός"
+    },
+    {
+        "riddleid": "mik_molos",
+        "part": "D",
+        "solution": "40",
+        "resolution": "Από ποιόν πλανήτη ήρθε η ηλεκτροκίνηση στην Πλάκα? $λέξη"
+    },
+    {
+        "riddleid": "ebike",
+        "part": "D",
+        "solution": "MERCURY",
+        "resolution": "Εκεί υπάρχουν Κάτοικοι που δεν έχουν ζωή, αλλά αν δεν τους κρατάς θα φύγουν. Αν 666 είναι ο αριθμός του διαβόλου ποιος είναι ο αριθμός του αφέντη Χριστού ? $αριθμός"
+    },
+    {
+        "riddleid": "meg_molos",
+        "part": "D",
+        "solution": "162",
+        "resolution": "Στο μικρότερο καμπαναριό. Ποιόν μήνα φτιάχτηκε? $αριθμός"
+    },
+    {
+        "riddleid": "tesrts",
+        "part": "D",
+        "solution": "8",
+        "resolution": "Στα μάτια, το μεγαλύτερο. Όταν το βρεις σημείωσε τις συντεταγμένες σου με λεπτομέρεια, και γράψε “weareready”."
+    },
+    {
+        "riddleid": "mati",
+        "part": "D",
+        "solution": "weareready",
+        "resolution": "You have gathered all the required information to figure out how to beat the leper king. Find the Game Master and answer the final riddle."
+    },
+    {
+        "riddleid": "start",
+        "part": "E",
+        "solution": "wearereadyE",
+        "resolution": "Nestled between craggy cliffs and the relentless tide lies Plaka, a village long abandoned and steeped in haunting tales. Once a thriving community, it fell into decay after being cursed by the arrival of the Leper King, a child exiled to the nearby barren island of Spinalonga due to his disfigurement. Shunned from birth, the child grew bitter in his isolation. As the years passed, he crafted a raft from the bones of the dead and returned to Plaka under the guise of a shipwrecked sailor, concealing his true nature. The villagers, unaware of his affliction, took pity on him, offering shelter and food. Slowly, the disease he carried spread through the village. As the illness ravaged their bodies, the villagers realized too late that they had been deceived. In their despair, they cursed the Leper King, binding his spirit to the village he had destroyed, condemning him to an eternity of suffering. Years later, stories of Plaka's fate became legend, a ghostly tale whispered to frighten children on stormy nights. Drawn by the thrill of the unknown, a group of young travelers ventured into the forsaken village. Under the light of a full moon, they stumbled upon the ancient graveyard, where they discovered a disturbed grave. The earth was freshly turned, and the coffin lid lay askew. Carved into the stone was a chilling inscription: \"O my master, I await thy return, upon the sixtieth year on the day of the greatest moon...\" As they stood there, a gust of wind delivered a blood-stained parchment into their hands. The message, from a doomed adventurer before them, implored for help, revealing that hints to stop the Leper King were hidden throughout the village. It was a plea for salvation, casting the travelers into a desperate quest … Your task begins now. Your objectives are: - Figure out how to stop the Leper King - Avoid getting (all) infected But beware, the Leper King and his servants walk among you, and have left cursed items and traps around… Your starting clue is: Στο τέλος του δρόμου που ξεκινούν οι ολυμπκοί αγώες. Σε ποια πόλη γίνονται ? $λέξη"
+    },
+    {
+        "riddleid": "olymp",
+        "part": "E",
+        "solution": "PAIS",
+        "resolution": "Για πληροφορίες: 693χχ127χχ. $αριθμός"
+    },
+    {
+        "riddleid": "torent",
+        "part": "E",
+        "solution": "2269",
+        "resolution": "Από ποιόν πλανήτη ήρθε η ηλεκτροκίνηση στην Πλάκα? $λέξη"
+    },
+    {
+        "riddleid": "ebike",
+        "part": "E",
+        "solution": "MERCURY",
+        "resolution": "Όπου η απουσία είναι η μόνη παρουσία. Κεραμέως του έτους : χχχχ. $Χρονολογία."
+    },
+    {
+        "riddleid": "gy",
+        "part": "E",
+        "solution": "1991",
+        "resolution": "Θέατρο : Το «αφτεράδικο» της πλάκας. Παράσταση: «Εκδήλωση ενεργητικού αντισυστημικού ενδιαφέροντος» , αριθμός εισιτηρίου : χχχχ. $Αριθμός Τετραψήφιο."
+    },
+    {
+        "riddleid": "sters",
+        "part": "E",
+        "solution": "1312",
+        "resolution": "Σύμφωνα με το ΦΕΚ:2916/Β/31-12-2015,πόσο πρέπει να πληρώσουν 10 φοιτητούδια για να πάνε στην Σπιναλόνγκα ? $αριθμός"
+    },
+    {
+        "riddleid": "mik_molos",
+        "part": "E",
+        "solution": "40",
+        "resolution": "Η βάρκα που ήθελε να γίνει ταμπέλα για στάθμευση αλλά την πρόλαβε ο γείτονας. Ναν? $αριθμός"
+    },
+    {
+        "riddleid": "buspark",
+        "part": "E",
+        "solution": "116",
+        "resolution": "Πόσες ακέραιες δεκάδες πούπουλα έχουν οι μαύροι γρύπες της Πλάκας? $αριθμός"
+    },
+    {
+        "riddleid": "pigad",
+        "part": "E",
+        "solution": "TODO",
+        "resolution": "Εκεί υψώνονται καθημερινά ασπίδες. Τι χρώμα έχει το αλουμίνιο ? $λέξη στα αγγλικά"
+    },
+    {
+        "riddleid": "beach_org",
+        "part": "E",
+        "solution": "yellow",
+        "resolution": "Εκεί υπάρχουν Κάτοικοι που δεν έχουν ζωή, αλλά αν δεν τους κρατάς θα φύγουν. Αν 666 είναι ο αριθμός του διαβόλου ποιος είναι ο αριθμός του αφέντη Χριστού ? $αριθμός"
+    },
+    {
+        "riddleid": "meg_molos",
+        "part": "E",
+        "solution": "162",
+        "resolution": "Στα μάτια, το μεγαλύτερο. Όταν το βρεις σημείωσε τις συντεταγμένες σου με λεπτομέρεια, και γράψε “weareready”."
+    },
+    {
+        "riddleid": "mati",
+        "part": "E",
+        "solution": "weareready",
+        "resolution": "You have gathered all the required information to figure out how to beat the leper king. Find the Game Master and answer the final riddle."
     }
-    
 ]
