@@ -49,7 +49,10 @@ else:
 @app.route('/')
 def index():
     if 'team_name' in session:
-        return render_template('index.html', team_name=session['team_name'])
+        team = next((team for team in teams if team['team_name'] == session['team_name']), None)
+        if team:
+            session['riddle_part'] = team['riddle_part']
+        return render_template('index.html', team_name=session['team_name'], riddle_part=session.get('riddle_part'))
     return redirect(url_for('login'))
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -79,8 +82,9 @@ def register_team():
     data = request.json
     team_name = data.get('teamName')
     infected_member = data.get('infectedMember')
+    riddle_part = data.get('riddlePart')  # Assume this is sent from the frontend
 
-    if not team_name or not infected_member:
+    if not team_name or not infected_member or not riddle_part:
         return jsonify({'success': False, 'error': 'All fields are required.'})
 
     if any(team['team_name'] == team_name for team in teams):
@@ -89,6 +93,7 @@ def register_team():
     new_team = {
         'team_name': team_name,
         'infected_members': [infected_member],
+        'riddle_part': riddle_part,  # Store the part
         'attempts': 0
     }
     teams.append(new_team)
